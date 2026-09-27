@@ -77,9 +77,22 @@ const profileData = {
         body: JSON.stringify(profileData)
       });
 
-      const result = await response.json();
+      const responseText = await response.text();
 
-      if (!response.ok) {
+        console.log("Server response:", responseText);
+        console.log("HTTP status:", response.status);
+
+        let result;
+
+            try {
+        result = JSON.parse(responseText);
+            }       catch (jsonError) {
+            console.error("Server did not return JSON:", responseText);
+        alert("Server error. HTTP status: " + response.status);
+        return;
+        }
+
+if (!response.ok) {
         alert(result.message);
         return;
       }
