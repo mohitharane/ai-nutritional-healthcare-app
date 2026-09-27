@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Dashboard</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="app-nav">
+  <a href="dashboard.html" class="app-logo">
+    AI <span>Wellness</span>
+  </a>
+
+  <div class="app-nav-links">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="meal-plan.html">Meal Plan</a>
+    <a href="symptom-guide.html">AI Guide</a>
+    <a href="reminders.html">Reminders</a>
+  </div>
+</nav>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="dashboard-page">
+    <a href="profile.html" class="back-link">← Edit profile</a>
+
+    <section class="dashboard-header">
+      <p class="tag">YOUR WELLNESS DASHBOARD</p>
+      <h1>Hello, <span id="userName">User</span></h1>
+      <p class="description">
+        Here is your daily nutrition and health summary.
+      </p>
+    </section>
+
+    <section class="health-cards">
+      <article class="health-card">
+        <p class="card-title">BMI</p>
+        <h2 id="bmiValue">--</h2>
+        <p class="card-status" id="bmiCategory">
+          Complete your profile to see your category
+          </p>
+      </article>
+
+      <article class="health-card">
+        <p class="card-title">Daily Calories</p>
+        <h2 id="dailyCalories">--</h2>
+        <p id="calorieMessage" class="card-status">Calculating your daily requirement...</p>
+      </article>
+
+      <article class="health-card">
+        <p class="card-title">Water Target</p>
+        <h2>2.5 L</h2>
+        <p class="card-status">Drink water regularly</p>
+      </article>
+    </section>
+    <section class="profile-summary">
+  <p class="tag">YOUR PROFILE SUMMARY</p>
+
+  <div class="summary-items">
+    <div>
+      <span>🎯</span>
+      <strong id="dashboardGoal">Goal</strong>
+    </div>
+
+    <div>
+      <span>🏃</span>
+      <strong id="dashboardActivity">Activity</strong>
+    </div>
+
+    <div>
+      <span>🥗</span>
+      <strong id="dashboardDiet">Diet</strong>
+    </div>
+    </div>
+    </section>
+
+    <section class="dashboard-action">
+      <h2>What would you like to do today?</h2>
+
+      <div class="action-links">
+        <a href="meal-plan.html" class="action-card">
+          <span>🥗</span>
+          <div>
+           <h3>Meal Plan</h3>
+               <p>View recommended meals</p>
+          </div>
+          </a>
+
+        <a href="symptom-guide.html" class="action-card">
+          <span>💬</span>
+          <div>
+           <h3>AI Symptom Guide</h3>
+               <p>Share how you feel</p>
+          </div>
+          </a>
+
+        <a href="reminders.html" class="action-card">
+          <span>⏰</span>
+          <div>
+               <h3>Health Reminders</h3>
+               <p>Manage your daily reminders</p>
+          </div>
+          </a>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+<div class="health-disclaimer">
+    <strong>Health Disclaimer</strong>
+    <p>
+        This application is designed for general health and nutrition
+        awareness only. The information provided is not a substitute for
+        professional medical advice, diagnosis, or treatment. For serious
+        or persistent symptoms, please consult a qualified healthcare
+        professional.
+    </p>
+</div>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Meal Plan</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="app-nav">
+  <a href="dashboard.html" class="app-logo">
+    AI <span>Wellness</span>
+  </a>
+
+  <div class="app-nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="meal-plan.html" class="active">Meal Plan</a>
+    <a href="symptom-guide.html">AI Guide</a>
+    <a href="reminders.html">Reminders</a>
+  </div>
+</nav>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="meal-page">
+    <a href="dashboard.html" class="back-link">← Back to dashboard</a>
+
+    <section class="meal-header">
+      <p class="tag">AI NUTRITION PLAN</p>
+      <h1>Today's <span>Meal Plan</span></h1>
+      <p id="mealUserMessage" class="description">
+      Creating your personalized meal plan...
+     </p>
+
+      <p class="description">
+        Your personalized meal plan is created using your health
+       profile, diet preference, and health goal.
+      </p>
+    </section>
+
+    <section class="meal-grid">
+      <div class="calorie-summary">
+    <p class="meal-time">DAILY TARGET</p>
+
+    <h2 id="mealCalories">Calculating...</h2>
+
+    <p id="mealCalorieMessage">
+        Calculating your estimated daily calorie requirement...
+    </p>
+
+    <p id="mealGoalDiet" class="card-status">
+        Loading your goal and diet...
+    </p>
+    </div>
+
+ <article class="meal-card">
+  <p class="meal-time">BREAKFAST</p>
+  <h2 id="breakfastName">Loading...</h2>
+  <p id="breakfastDescription">Creating your meal plan...</p>
+  <strong id="breakfastCalories">-- kcal</strong>
+</article>
+
+  <article class="meal-card">
+  <p class="meal-time">LUNCH</p>
+  <h2 id="lunchName">Loading...</h2>
+  <p id="lunchDescription">Creating your meal plan...</p>
+  <strong id="lunchCalories">-- kcal</strong>
+</article>
+
+  <article class="meal-card">
+  <p class="meal-time">EVENING SNACK</p>
+  <h2 id="snackName">Loading...</h2>
+  <p id="snackDescription">Creating your meal plan...</p>
+  <strong id="snackCalories">-- kcal</strong>
+</article>
+
+  <article class="meal-card">
+  <p class="meal-time">DINNER</p>
+  <h2 id="dinnerName">Loading...</h2>
+  <p id="dinnerDescription">Creating your meal plan...</p>
+  <strong id="dinnerCalories">-- kcal</strong>
+</article>
+
+</section>
+
+    <button class="start-button" id="generatePlanButton">Generate Another Plan</button>
+  </main>
+ <script>
+async function loadMealPlan() {
+
+    try {
+
+        const response = await fetch("/api/meal-plan");
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.message);
+        }
+        const mealGoalDiet = document.getElementById("mealGoalDiet");
+
+if (mealGoalDiet) {
+    let goalText = data.user.goal;
+    let dietText = data.user.diet;
+
+    if (goalText === "lose") {
+        goalText = "Weight Loss";
+    } else if (goalText === "gain") {
+        goalText = "Weight Gain";
+    } else if (goalText === "maintain") {
+        goalText = "Maintain Weight";
+    }
+
+    if (dietText === "non-vegetarian") {
+        dietText = "Non-Vegetarian";
+    } else if (dietText === "vegetarian") {
+        dietText = "Vegetarian";
+    } else if (dietText === "vegan") {
+        dietText = "Vegan";
+    }
+
+    mealGoalDiet.textContent =
+        `${goalText} • ${dietText}`;
+}
+        const mealUserMessage = document.getElementById("mealUserMessage");
+
+if (mealUserMessage) {
+    const userName = data.user.name;
+    const goal = data.user.goal;
+
+    let goalText = "health";
+
+    if (goal === "lose") {
+        goalText = "weight loss";
+    } else if (goal === "gain") {
+        goalText = "weight gain";
+    } else if (goal === "maintain") {
+        goalText = "maintaining your weight";
+    }
+
+    mealUserMessage.textContent =
+        `Hi ${userName}! Here's a meal plan designed for your goal: ${goalText}.`;
+}
+
+        // Daily calorie target
+        document.getElementById("mealCalories").textContent =
+            data.daily_calories.toLocaleString() + " kcal/day";
+
+        document.getElementById("mealCalorieMessage").textContent =
+            "Estimated daily calorie target based on your profile and goal.";
+
+        // Breakfast
+        document.getElementById("breakfastName").textContent =
+            data.meals.breakfast.name;
+
+        document.getElementById("breakfastDescription").textContent =
+            data.meals.breakfast.description;
+
+        document.getElementById("breakfastCalories").textContent =
+            data.meals.breakfast.calories + " kcal";
+
+
+        // Lunch
+        document.getElementById("lunchName").textContent =
+            data.meals.lunch.name;
+
+        document.getElementById("lunchDescription").textContent =
+            data.meals.lunch.description;
+
+        document.getElementById("lunchCalories").textContent =
+            data.meals.lunch.calories + " kcal";
+
+
+        // Snack
+        document.getElementById("snackName").textContent =
+            data.meals.snack.name;
+
+        document.getElementById("snackDescription").textContent =
+            data.meals.snack.description;
+
+        document.getElementById("snackCalories").textContent =
+            data.meals.snack.calories + " kcal";
+
+
+        // Dinner
+        document.getElementById("dinnerName").textContent =
+            data.meals.dinner.name;
+
+        document.getElementById("dinnerDescription").textContent =
+            data.meals.dinner.description;
+
+        document.getElementById("dinnerCalories").textContent =
+            data.meals.dinner.calories + " kcal";
+
+    } catch (error) {
+
+        console.error("Meal plan error:", error);
+
+        document.getElementById("mealCalories").textContent =
+            "--";
+
+        document.getElementById("mealCalorieMessage").textContent =
+            "Please complete your health profile first.";
+
+        document.getElementById("breakfastName").textContent =
+            "Unable to load meal plan";
+
+        document.getElementById("breakfastDescription").textContent =
+            "Please complete your health profile first.";
+    }
+}
+
+
+// Load plan when page opens
+loadMealPlan();
+
+
+// Generate another plan
+const generatePlanButton =
+    document.getElementById("generatePlanButton");
+
+generatePlanButton.addEventListener("click", async function () {
+
+    generatePlanButton.disabled = true;
+    generatePlanButton.textContent = "Generating...";
+
+    try {
+        await loadMealPlan();
+    } finally {
+        generatePlanButton.disabled = false;
+        generatePlanButton.textContent = "Generate Another Plan";
+    }
+
+});
+</script>
+</body>
+</html>

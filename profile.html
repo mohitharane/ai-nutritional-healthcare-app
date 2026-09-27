@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Health Profile</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="app-nav">
+  <a href="dashboard.html" class="app-logo">
+    AI <span>Wellness</span>
+  </a>
+
+  <div class="app-nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html" class="active">Profile</a>
+    <a href="meal-plan.html">Meal Plan</a>
+    <a href="symptom-guide.html">AI Guide</a>
+    <a href="reminders.html">Reminders</a>
+  </div>
+</nav>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="profile-page">
+    <a href="index.html" class="back-link">← Back</a>
+
+    <section class="profile-card">
+      <p class="tag">STEP 1 OF 3</p>
+      <h1>Your Health <span>Profile</span></h1>
+
+      <p class="description">
+        Tell us a little about yourself so the AI can create
+        nutrition guidance suited to you.
+      </p>
+
+      <form class="profile-form" id="profileForm">
+        <label for="name">Your name</label>
+       <input type="text" id="name" placeholder="Enter your name" required
+        maxlength="50" pattern="[A-Za-z\s]+" title="Please enter a valid name (letters and spaces only)">
+
+        <label for="age">Your age</label>
+        <input type="number" id="age" placeholder="Example: 20" required
+         min="1" max="120" step="1">
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+          <option value="">Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          </select>
+        </div>
+
+        <label for="height">Your height (cm)</label>
+          <input type="number" id="height" placeholder="Example: 170" required
+           min="1" max="250" step="1">
+
+          <label for="weight">Your weight (kg)</label>
+          <input type="number" id="weight" placeholder="Example: 65" required
+           min="1" max="300" step="0.1">
+            <div class="form-group">
+          <label for="diet">Diet Preference</label>
+          <select id="diet" required>
+          <option value="">Select diet preference</option>
+          <option value="vegetarian">Vegetarian</option>
+         <option value="non-vegetarian">Non-Vegetarian</option>
+         <option value="vegan">Vegan</option>
+          </select>
+          </div>
+          <div class="form-group">
+          <label for="goal">Your health goal</label>
+
+          <select id="goal" required>
+          <option value="">Select your health goal</option>
+          <option value="lose">Lose Weight</option>
+          <option value="maintain">Maintain Weight</option>
+          <option value="gain">Gain Weight</option>
+          </select>
+          </div>
+
+        <div class="form-group">
+        <label for="activity">Activity Level</label>
+        <select id="activity" required>
+        <option value="">Select activity level</option>
+        <option value="sedentary">Sedentary</option>
+        <option value="light">Lightly Active</option>
+        <option value="moderate">Moderately Active</option>
+        <option value="active">Very Active</option>
+        </select>
+        </div>
+
+        <button type="submit" class="start-button">
+          Continue
+        </button>
+      </form>
+    </section>
+  </main>
+  <script>
+    // Load previously saved profile
+    const savedProfile = JSON.parse(localStorage.getItem("healthProfile"));
+
+    if (savedProfile) {
+      document.getElementById("name").value = savedProfile.name || "";
+      document.getElementById("age").value = savedProfile.age || "";
+      document.getElementById("gender").value = savedProfile.gender || "";
+      document.getElementById("height").value = savedProfile.height || "";
+      document.getElementById("weight").value = savedProfile.weight || "";
+      document.getElementById("diet").value = savedProfile.diet || "";
+      document.getElementById("goal").value = savedProfile.goal || "";
+      document.getElementById("activity").value = savedProfile.activity || "";
+    }
+
+    // Save profile before the existing app.js submit handler runs
+    document.getElementById("profileForm").addEventListener("submit", function () {
+
+      const profile = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        gender: document.getElementById("gender").value,
+        height: document.getElementById("height").value,
+        weight: document.getElementById("weight").value,
+        diet: document.getElementById("diet").value,
+        goal: document.getElementById("goal").value,
+        activity: document.getElementById("activity").value
+      };
+
+      localStorage.setItem("healthProfile", JSON.stringify(profile));
+    });
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>

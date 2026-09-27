@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Symptom Guide</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="app-nav">
+  <a href="dashboard.html" class="app-logo">
+    AI <span>Wellness</span>
+  </a>
+
+  <div class="app-nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="meal-plan.html">Meal Plan</a>
+    <a href="symptom-guide.html" class="active">AI Guide</a>
+    <a href="reminders.html">Reminders</a>
+  </div>
+</nav>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="symptom-page">
+    <a href="dashboard.html" class="back-link">← Back to dashboard</a>
+
+    <section class="symptom-card">
+      <p class="tag">AI WELLNESS GUIDE</p>
+      <h1>How are you <span>feeling?</span></h1>
+
+      <p class="description">
+        Describe your symptoms or how you feel. The AI will provide
+        general nutrition and wellness guidance.
+      </p>
+
+      <div class="safety-note">
+        ⚠️ <strong>Health & Safety Notice:</strong>
+        This AI wellness guide provides general health and nutrition
+        information only. It does not diagnose diseases or prescribe
+        medicines. For severe, persistent, or concerning symptoms,
+        consult a qualified healthcare professional.
+      </div>
+
+      <label for="symptoms">Describe your symptoms</label>
+
+      <textarea
+        id="symptoms"
+        placeholder="Example: I feel tired and have low energy today."
+      ></textarea>
+
+      <button id="askAiButton" class="start-button">
+      Ask AI for Guidance
+      </button>
+
+      <section class="ai-response">
+
+      <p class="response-title">🤖AI Wellness Response</p>
+
+      <div class="response-content">
+      <p id="aiResponse">
+      Your personalized wellness guidance will appear here after
+      you ask the AI.
+      </p>
+      </div>
+
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

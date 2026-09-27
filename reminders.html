@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Reminders</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <nav class="app-nav">
+  <a href="dashboard.html" class="app-logo">
+    AI <span>Wellness</span>
+  </a>
+
+  <div class="app-nav-links">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="profile.html">Profile</a>
+    <a href="meal-plan.html">Meal Plan</a>
+    <a href="symptom-guide.html">AI Guide</a>
+    <a href="reminders.html" class="active">Reminders</a>
+  </div>
+</nav>
+  <div class="background-shape shape-one"></div>
+  <div class="background-shape shape-two"></div>
+
+  <main class="reminders-page">
+    <a href="dashboard.html" class="back-link">← Back to dashboard</a>
+
+    <section class="reminders-header">
+      <p class="tag">DAILY WELLNESS</p>
+      <h1>Health <span>Reminders</span></h1>
+
+      <p class="description">
+        Build healthy routines with reminders for water, medication,
+        exercise, and sleep.
+      </p>
+    </section>
+
+    <section class="reminder-grid">
+      <article class="reminder-card">
+        <span class="reminder-icon">💧</span>
+        <h2>Water</h2>
+        <p>Drink water regularly throughout the day.</p>
+        <button class="reminder-button"data-reminder="water">Set Reminder</button>
+      </article>
+
+      <article class="reminder-card">
+        <span class="reminder-icon">💊</span>
+        <h2>Medicine</h2>
+        <p>Remember prescribed medication at the right time.</p>
+        <button class="reminder-button" data-reminder="medicine">Set Reminder</button>
+      </article>
+
+      <article class="reminder-card">
+        <span class="reminder-icon">🏃</span>
+        <h2>Exercise</h2>
+        <p>Set a reminder for your daily physical activity.</p>
+        <button class="reminder-button" data-reminder="exercise">Set Reminder</button>
+      </article>
+
+      <article class="reminder-card">
+        <span class="reminder-icon">🌙</span>
+        <h2>Sleep</h2>
+        <p>Maintain a consistent and healthy sleep routine.</p>
+        <button class="reminder-button">Set Reminder</button>
+      </article>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
