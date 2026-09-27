@@ -22,6 +22,29 @@ app = Flask(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATABASE = os.path.join(BASE_DIR, "health.db")
+def init_database():
+    connection = sqlite3.connect(DATABASE)
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            age INTEGER NOT NULL,
+            gender TEXT NOT NULL,
+            height REAL NOT NULL,
+            weight REAL NOT NULL,
+            diet TEXT NOT NULL,
+            activity TEXT NOT NULL,
+            goal TEXT NOT NULL
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
+
+init_database()
 
 
 @app.route("/")
